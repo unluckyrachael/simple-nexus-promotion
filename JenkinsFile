@@ -5,6 +5,7 @@ pipeline {
             agent any
             steps {
                 sh 'wget http://ec2-18-219-152-113.us-east-2.compute.amazonaws.com:8081/repository/rtt-snapshot/apps/add2vals/1.0/add2vals-1.0'
+                sh 'mv add2vals-1.0 /tmp/add2vals'
             }
         }
         stage("Publish") {
@@ -21,7 +22,7 @@ pipeline {
                    artifacts: [
                        [artifactId: 'add2vals',
                         classifier: '',
-                        file: 'add2vals-1.0',
+                        file: '/tmp/add2vals',
                         type: '']
                    ]
                )
