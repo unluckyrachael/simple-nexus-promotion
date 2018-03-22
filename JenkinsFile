@@ -4,7 +4,7 @@ pipeline {
         stage('Retrieve') {
             agent any
             steps {
-                sh 'wget http://ec2-18-219-152-113.us-east-2.compute.amazonaws.com:8081/repository/rtt-snapshot/apps/add2vals/1.0/add2vals-1.0'
+                sh 'wget http://nexus.roundtower.io:8081/repository/rtt-snapshot/apps/add2vals/1.0/add2vals-1.0'
                 sh 'mv add2vals-1.0 /tmp/add2vals'
             }
         }
@@ -14,7 +14,7 @@ pipeline {
                nexusArtifactUploader(
                    nexusVersion: 'nexus3',
                    protocol: 'http',
-                   nexusUrl: 'ec2-18-219-152-113.us-east-2.compute.amazonaws.com:8081',
+                   nexusUrl: 'nexus.roundtower.io:8081',
                    groupId: 'apps',
                    version: '1.0',
                    repository: 'rtt-release',
